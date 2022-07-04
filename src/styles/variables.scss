@@ -1,0 +1,100 @@
+$mainColor: var(--theme-60);
+$hoverColor: var(--theme-10);
+$activeColor: var(--theme-20);
+
+$HD: 1366px;
+$LowHD: 1024px;
+$Mobile: 767px;
+// // basic margin and padding, simple way to change it in all app
+// basic size for many margin, padding, width. Simple way to change evrithing in a mobile version
+//10 px if 1rem = 16px -default value
+$basic-margin: 0.625rem; // 10px if 1rem = 16px
+$ui-neutral-white: #FFFFFF;
+$ui-neutral-10 : #F6F8FC;
+$ui-neutral-20 : #F1F4F9;
+$ui-neutral-30 : #E2E8F0;
+$ui-neutral-40 : #CBD4E1;
+$ui-neutral-50 : #94A3B8;
+$ui-neutral-60 : #64748B;
+$ui-neutral-70 : #475569;
+$ui-neutral-80 : #27364B;
+$ui-neutral-90 : #1E2A3B;
+$ui-neutral-100: #0F1A2A;
+
+$ui-green-10 : #E8F3EB;
+$ui-green-20 : #D0E7D8;
+$ui-green-30 : #A2CFB0;
+$ui-green-40 : #73B789;
+$ui-green-50 : #459F61;
+$ui-green-60 : #16873A;
+$ui-green-70 : #0F5F29;
+$ui-green-80 : #0B441D;
+$ui-green-90 : #072911;
+$ui-green-100: #020D06;
+
+$ui-blue-10 : #EDF5FD;
+$ui-blue-20 : #C0DCF7;
+$ui-blue-30 : #92C2F2;
+$ui-blue-40 : #64A9ED;
+$ui-blue-50 : #378FE7;
+$ui-blue-60 : #1976D2;
+$ui-blue-70 : #145CA4;
+$ui-blue-80 : #0E4377;
+$ui-blue-90 : #092949;
+$ui-blue-100: #03101C;
+
+$ui-cyan-10 : #DBF6FF;
+$ui-cyan-20 : #A8E9FF;
+$ui-cyan-40 : #42D0FF;
+$ui-cyan-60 : #007EA8;
+$ui-cyan-70 : #005875;
+$ui-cyan-80 : #00455B;
+$ui-cyan-100: #001E28;
+
+$ui-orange-10 : #FEF3DE;
+$ui-orange-20 : #FEE9C5;
+$ui-orange-30 : #FDD793;
+$ui-orange-40 : #FCCE7A;
+$ui-orange-50 : #FBBB48;
+$ui-orange-60 : #FAA916;
+$ui-orange-70 : #D88D05;
+$ui-orange-80 : #A66D04;
+$ui-orange-90 : #744C03;
+$ui-orange-100: #432B01;
+
+$ui-red-10 : #FBE9E9;
+$ui-red-20 : #F7D3D3;
+$ui-red-30 : #F2B6B6;
+$ui-red-40 : #E77D7D;
+$ui-red-50 : #DF5252;
+$ui-red-60 : #DB2835;
+$ui-red-70 : #AB2020;
+$ui-red-80 : #801818;
+$ui-red-90 : #551010;
+$ui-red-100: #2A0808;
+
+$breakpoint-bg: 1450px;
+$breakpoint-xl: 1200px;
+$breakpoint-lg: 1024px; //lg
+$breakpoint-md: 768px; //md
+$breakpoint-sm: 576px; //sm
+$breakpoint-xs: 390px;
+$breakpoint-mobile: 425px;
+
+// My Leaves table
+$breakpoint-mlt-md: 670px;
+
+
+@mixin widget-header {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: $ui-neutral-70;
+}
+
+@mixin base-text {
+  font-size: 16px;
+  line-height: 20px;
+  color: $ui-neutral-90;
+}

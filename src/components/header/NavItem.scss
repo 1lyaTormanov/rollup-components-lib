@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.nav_item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  @media screen and (max-width: $breakpoint-lg) {
+    margin: 0;
+    border: none;
+  }
+  svg{
+    width: 18px;
+    margin-top: 2px;
+  }
+  h3{
+    margin: 25.5px 0;
+    padding: 0 8px;
+    color: $ui-neutral-70;
+    font-weight: 400;
+  }
+}

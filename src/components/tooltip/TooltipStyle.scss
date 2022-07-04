@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.ant-tooltip-arrow-content{
+  --antd-arrow-background-color: #475569 !important;
+}
+
+.tltp{
+  border-radius: 4px;
+  color: $ui-neutral-white;
+}

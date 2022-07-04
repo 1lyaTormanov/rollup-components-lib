@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.avatar_wrapper{
+  border-radius: 50%;
+  .avatar{
+    height: 40px;
+    border-radius: 50%;
+    width: 40px;
+    border: 1px solid $ui-neutral-30;
+    object-fit: contain;
+  }
+}

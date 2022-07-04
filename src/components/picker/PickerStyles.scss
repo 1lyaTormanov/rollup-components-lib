@@ -1,0 +1,70 @@
+@import '../../styles/variables.scss';
+
+.customPicker {
+  width: 176px;
+  height: 36px;
+  background: $ui-neutral-white;
+  border: 1px solid $ui-neutral-30;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-right: 16px;
+  .ant-picker-input > input {
+    font-size: 16px;
+    line-height: 20px;
+    color: $ui-neutral-90;
+  }
+  @media screen and (max-width: 760px) {
+    width: 120px;
+    min-width: 120px;
+    text-overflow: ellipsis;
+  }
+}
+
+.customPickerReportSector {
+  width: 108px;
+  height: 36px;
+  background: $ui-neutral-white;
+  border: 1px solid $ui-neutral-30;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-right: 16px;
+  .ant-picker-input > input {
+    font-size: 16px;
+    line-height: 20px;
+    color: $ui-neutral-90;
+  }
+}
+
+.ant-picker-range{
+  .ant-picker-input > input {
+    font-size: 14px;
+    line-height: 1.5715;
+    color: $ui-neutral-90;
+    border: none
+  }
+  &:hover, &:focus-visible, &:focus{
+    outline: none;
+    border: 1px solid $ui-neutral-30 !important;
+  }
+}
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+  background: $mainColor;
+  border-radius: 8px;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
+.ant-picker:hover, .ant-picker-focused {
+  border-color: $mainColor;
+}
+
+.ant-picker-focused,
+.ant-input-affix-wrapper-focused {
+  box-shadow: 0 0 0 1px $ui-green-20;
+}
+
+@media screen and (max-width: $breakpoint-xl) {
+  .ant-picker {
+    align-self: end;
+    margin-right: 0;
+  }
+}

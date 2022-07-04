@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.notifications_list{
+  background: $ui-neutral-white;
+  box-shadow: 2px 4px 10px rgba(3, 25, 86, 0.08), 0px 4px 20px rgba(3, 25, 86, 0.12);
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  height: max-content;
+  @media screen and (min-width: $breakpoint-md){
+    width: 480px;
+  }
+  .title{
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $ui-neutral-30;
+    width: 100%;
+    .title_left{
+      color: $ui-neutral-70;
+      font-weight: 600;
+    }
+    .title_right{
+      color: $ui-blue-60;
+      cursor: pointer;
+      text-transform: capitalize;
+
+    }
+  }
+  .list{
+    overflow-y: auto;
+    scrollbar-color: $ui-neutral-40 $ui-neutral-20;
+    scrollbar-width: thin;
+    .notification_wrapper{
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+    }
+  }
+}

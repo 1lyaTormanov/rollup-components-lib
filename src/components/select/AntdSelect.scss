@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.antd-overload-select{
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
+    font-weight: 400 !important;
+  }
+  .ant-select-focused{
+    border: 1px solid $mainColor !important;
+  }
+  .ant-select-single.ant-select-open .ant-select-selection-item{
+    color: $ui-neutral-90;
+  }
+  .antd-custom-kit-select{
+    color: $ui-neutral-90;
+    outline: none !important;
+    border-radius: 8px;
+    border: 1px solid $ui-neutral-30;
+  }
+}
+

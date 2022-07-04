@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+
+.modal_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-modal-content{
+  width: 560px;
+  border-radius: 16px !important;
+  height: max-content;
+  background: $ui-neutral-white;
+  box-shadow: 2px 4px 10px rgba(4, 3, 70, 0.08);
+  @media screen and (max-width: $breakpoint-mobile){
+    width: 100% !important;
+  }
+  .ant-modal-header{
+    background: $ui-neutral-white;
+    border-radius: 16px 16px 0 0;
+    .ant-modal-title {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      color: $ui-neutral-70;
+    }
+  }
+  .ant-modal-footer {
+    margin-top: -12px;
+    display: flex;
+    justify-content: flex-end;
+    button{
+      margin-right: 10px;
+    }
+  }
+}

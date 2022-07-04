@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.selectActive{
+  outline: 1px solid $mainColor !important;
+}
+.disabled{
+  background: $ui-neutral-10 !important;
+}
+.selectWrapper{
+  background: $ui-neutral-white;
+  border: 1px solid $ui-neutral-30;
+  box-sizing: border-box;
+  border-radius: 8px;
+  position: relative;
+  padding: 7px 8px;
+  cursor: pointer;
+
+  .selectValue{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span{
+      width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $ui-neutral-90;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      font-style: normal;
+    }
+  }
+}

@@ -1,0 +1,153 @@
+@import '../../styles/variables.scss';
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background: $ui-neutral-white;
+  box-shadow: -4px 2px 16px rgba(36, 51, 82, 0.08);
+
+
+  .login-form {
+    .ant-form-item-explain-error li{
+      height: 26px;
+      text-align: start;
+      color: #DB2835;
+    }
+    @-webkit-keyframes autofill {
+      to {
+        color: inherit;
+        background: transparent;
+      }
+    }
+    .ant-input-affix-wrapper > input.ant-input:focus{
+      box-shadow:  inset 0 0 0 50px #f5f8fc !important;
+    }
+    input {outline: none;}
+    input:-webkit-autofill {
+      -webkit-box-shadow: inset 0 0 0 50px #f5f8fc !important; /* Цвет фона */
+    }
+    .default_input{
+      height: 48px;
+      background: $ui-neutral-10 !important;
+      input{
+        background: $ui-neutral-10 !important;
+      }
+      &:focus{
+        background: white !important;
+        input{
+          background: white !important;
+        }
+      }
+    }
+    .ant-form-item{
+      margin: 0 0 24px;
+    }
+    .ant-form-item-explain-connected {
+      height: 0;
+      min-height: 0;
+      //opacity: 0;
+    }
+    button{
+      width: 100%;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      img {
+        width: 64px;
+      }
+    }
+
+    h1 {
+      margin: 0 0 40px 0;
+      font-weight: 700;
+      color: $ui-neutral-80;
+      line-height: 32px;
+      font-size: 24px;
+    }
+
+    p {
+      text-align: left;
+      margin-bottom: 4px;
+      color: $ui-neutral-70;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .visibilityIcon{
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      top: 40px;
+      right: 16px;
+    }
+    .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+      background: $ui-neutral-10;
+    }
+  }
+
+  .login-form-logo {
+    display: none;
+  }
+
+
+  #invalid {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.2px;
+    color: $ui-red-60;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    display: none;
+  }
+
+  .ant-form-item-explain.ant-form-item-explain-error {
+    text-align: left;
+  }
+}
+
+@media (max-width: 1350px) {
+  .ant-row {
+    background-color: $ui-neutral-white;
+  }
+  .container {
+    width: 100%;
+    box-shadow: none;
+    overflow: auto;
+    .login-form-logo {
+      display: block;
+      margin-bottom: 80px;
+      text-align: center;
+      padding-top: 8px;
+      color: $ui-neutral-70;
+    }
+    .ant-form-item {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    h1 {
+      font-size: 24px;
+    }
+    .ant-input, button {
+      width: 100% !important;
+    }
+  }
+}
+

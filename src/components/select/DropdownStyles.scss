@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.selectList{
+  z-index: 10000;
+  position: absolute;
+  top: 40px;
+  background: $ui-neutral-white;
+  box-shadow: 2px 4px 10px rgba(3, 25, 86, 0.08), 0px 4px 20px rgba(3, 25, 86, 0.12);
+  border-radius: 8px;
+  padding: 8px 0;
+  left: 0;
+  width: 100%;
+  .select_list_wrapper{
+    max-height: 220px;
+    overflow: auto;
+  }
+  .active{
+    background: $activeColor;
+  }
+  .disabled{
+    display: none;
+  }
+  .selectListItem{
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    color: $ui-neutral-90;
+    padding: 4px 16px 4px 8px;
+    &:hover{
+      background: $hoverColor;
+    }
+  }
+}

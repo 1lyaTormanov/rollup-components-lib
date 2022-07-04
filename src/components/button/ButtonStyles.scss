@@ -1,0 +1,263 @@
+@import '../../styles/variables.scss';
+.button {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 14px 12px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+  cursor: pointer;
+  min-width: 100px;
+  &:disabled, .button[disabled]{
+    cursor: default;
+    opacity: 0.4;
+  }
+}
+.white_grey{
+  color: $ui-neutral-70;
+  background: $ui-neutral-white;
+  svg{
+    path{
+      stroke: $ui-neutral-70;
+    }
+  }
+  &:hover{
+    background: $ui-neutral-20;
+    color: $ui-neutral-70;
+    svg{
+      path{
+        stroke: $ui-neutral-70;
+      }
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-neutral-20 !important;
+    }
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-neutral-20
+  }
+}
+
+.white_red{
+  color: $ui-red-60;
+  background: $ui-neutral-white;
+  svg{
+    path{
+      stroke: $ui-red-60;
+    }
+  }
+  &:hover{
+    background:$ui-red-30;
+    color: $ui-red-70;
+    svg{
+      path{
+        stroke: $ui-red-70;
+      }
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:#FFF5EF !important;
+    }
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-red-10
+  }
+}
+
+.secondary_green{
+  color: $ui-green-60;
+  background: $ui-green-10;
+  svg{
+    path{
+      stroke: $ui-neutral-70;
+    }
+  }
+  &:hover{
+    background: $ui-green-20;
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-green-20
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-green-10 !important;
+    }
+  }
+}
+
+.secondary_blue{
+  color: $ui-blue-60;
+  background: $ui-blue-10;
+  svg{
+    path{
+      stroke: $ui-blue-60;
+    }
+  }
+  &:hover{
+    color: $ui-blue-70;
+    background: $ui-blue-20;
+    svg{
+      path{
+        stroke: $ui-blue-70;
+      }
+    }
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-blue-20
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-blue-10 !important;
+    }
+  }
+}
+
+.secondary_cyan{
+  color: $ui-cyan-60;
+  background: $ui-cyan-10;
+  svg{
+    path{
+      stroke: $ui-cyan-60;
+    }
+  }
+  &:hover{
+    color: $ui-cyan-70;
+    background: $ui-cyan-20;
+    svg{
+      path{
+        stroke: $ui-cyan-70;
+      }
+    }
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-cyan-20
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-cyan-10 !important;
+    }
+  }
+}
+
+.secondary_red{
+  color: $ui-red-60;
+  background: $ui-red-10;
+  svg{
+    path{
+      stroke: $ui-red-60;
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-red-10 !important;
+    }
+  }
+  &:hover{
+    background: $ui-red-20;
+    color: $ui-red-70;
+    svg{
+      path{
+        stroke: $ui-red-70;
+      }
+    }
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-red-20
+  }
+}
+
+.primary_red{
+  color: $ui-neutral-white;
+  background: $ui-red-60;
+  svg{
+    path{
+      stroke: $ui-neutral-white;
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-red-60 !important;
+    }
+  }
+  &:hover{
+    background: $ui-red-70;
+    color: $ui-neutral-white;
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-red-20
+  }
+}
+
+.primary_blue{
+  color: $ui-neutral-white;
+  background: $ui-blue-60;
+  svg{
+    path{
+      stroke: $ui-neutral-white;
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-blue-60 !important;
+    }
+  }
+  &:hover{
+    background: $ui-blue-70;
+    color: $ui-neutral-white;
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-blue-20
+  }
+}
+
+.primary_cyan{
+  color: $ui-neutral-white;
+  background: $ui-cyan-60;
+  svg{
+    path{
+      stroke: $ui-neutral-white;
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-cyan-60 !important;
+    }
+  }
+  &:hover{
+    background: $ui-cyan-70;
+    color: $ui-neutral-white;
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-cyan-20
+  }
+}
+.primary_green{
+  color: $ui-neutral-white;
+  background: $ui-green-60;
+  svg{
+    path{
+      stroke: $ui-neutral-white;
+    }
+  }
+  &:disabled{
+    &:hover{
+      background:$ui-green-60 !important;
+    }
+  }
+  &:hover{
+    background: $ui-green-70;
+    color: $ui-neutral-white;
+  }
+  &:focus, &:active{
+    border: 2px solid $ui-green-20
+  }
+}
+
+
