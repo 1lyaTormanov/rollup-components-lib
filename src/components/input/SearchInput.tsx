@@ -1,17 +1,18 @@
 import * as React from 'react'
-import {FunctionComponent} from 'react'
-import { Input } from 'antd'
+import {FunctionComponent, useState} from 'react'
 import { wrapEvt } from '../../functions/utils'
 import { InputI } from './Input'
 import './InputStyles.scss'
+import {ReactComponent as ClearIcon} from '../../svg/clear.svg'
+import {FocusWrapper} from "../wrappers/FocusWrapper";
 
 export interface SearchInputI
-  extends Pick<InputI, 'onChange' | 'placeholder' | 'className'> {
+  extends Pick<InputI,  'placeholder' | 'className'> {
   prefix?: React.ReactNode
-  suffix?: React.ReactNode
+  onChange: (value: string) => void
   value: string
   disabled?: boolean
-  allowClear: true
+  allowClear?: true
 }
 
 export const SearchInput: FunctionComponent<SearchInputI> = (props) => {
@@ -21,20 +22,32 @@ export const SearchInput: FunctionComponent<SearchInputI> = (props) => {
     className,
     prefix,
     allowClear,
-    suffix,
     value,
     disabled
   } = props
+
+
   return (
-    <Input
-      disabled={disabled}
-      allowClear={allowClear}
-      value={value}
-      className={`default_input ${className}`}
-      placeholder={placeholder}
-      prefix={prefix}
-      suffix={value.length ? null : suffix}
-      onChange={(e) => wrapEvt(e, onChange)}
-    />
+    <FocusWrapper className={'input_focus_wrapper'}>
+        {(focus, _, openCallback)=>
+            <span onClick={()=> openCallback?.()} className={`input_wrapper ${className} ${focus ? 'focused_element': ''}`}>
+                  <span className={'icon_prefix'}>{prefix && <>{prefix}</>}</span>
+                  <input
+                      disabled={disabled}
+                      value={value}
+                      placeholder={placeholder}
+                      // prefix={prefix}
+                      // suffix={value.length ? null : suffix}
+                      onChange={(e) => wrapEvt(e, onChange)}
+                  />
+                  <span className={'icon_clear'}>
+                      {allowClear && !!value.length &&
+                          <ClearIcon onClick={()=> onChange('')}/>
+                      }
+                  </span>
+
+    </span>
+        }
+    </FocusWrapper>
   )
 }

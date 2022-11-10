@@ -2,23 +2,19 @@ import * as React from 'react'
 import { Col, Row } from 'antd'
 import './LoginPage.scss'
 import { Dashboard } from './Dashboard'
-import {FormWrapper, SliderChildren} from './LoginForm'
+import { LoginForm } from './LoginForm'
 import { DefaultSlide } from '../../types/types'
 
 export interface LoginPageI<T> {
   autoplay: boolean
   logo: string
-  slides: DefaultSlide[]
+  slides: DefaultSlide[] | T[]
+  type: 'DEFAULT' | 'CUSTOM'
   appName: string
-  children: (children: SliderChildren<T>) => React.ReactNode,
-  initialValues: T
-  onSubmit: () => void
-  validationSchema: any
-
 }
 
 export function LoginPage<T>(props: LoginPageI<T>) {
-  const { autoplay, logo, slides, appName, children, initialValues, onSubmit, validationSchema } = props
+  const { autoplay, logo, slides, type, appName } = props
   return (
     <Row>
       <Col span={12} className='login-dashboard'>
@@ -26,10 +22,11 @@ export function LoginPage<T>(props: LoginPageI<T>) {
           autoplay={autoplay}
           logo={logo}
           slides={slides}
+          type={type}
         />
       </Col>
       <Col span={12} className='login-form'>
-        <FormWrapper appName={appName} logo={logo} children={children}  initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}/>
+        <LoginForm appName={appName} logo={logo} />
       </Col>
     </Row>
   )

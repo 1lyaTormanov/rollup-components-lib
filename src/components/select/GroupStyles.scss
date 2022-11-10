@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+
+.group{
+  .groupLabel{
+    color: $ui-neutral-70;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    padding: 4px 16px 4px 8px
+  }
+  .groupList{
+    letter-spacing: -0.2px;
+    color: $ui-neutral-90;
+  }
+}

@@ -8,16 +8,15 @@ import { FocusWrapper } from '../wrappers/FocusWrapper'
 
 export interface SelectI<T> {
   value: string | number
-  onChangeValue: (value: T) => void
+  onChangeValue?: (value: T) => void
   render: (item: T) => ReactNode
   list: T[]
+  uniqueElement: (el: T) => boolean
   className?: string
   defaultValue?: string
-  disabled?: true
-  itemToKey: (item: T) => string | number
+  disabled?: boolean
   disabledItem?: (value: T) => boolean
   needHeader?: boolean
-  uniqueKey?: { key: string; value: string | number }
   onHeaderClick?: () => void
   renderHeaderContent?: ReactNode
 }
@@ -30,11 +29,10 @@ export function Select<V>(props: SelectI<V>): JSX.Element {
     list,
     className,
     defaultValue,
-    itemToKey,
     disabledItem,
     disabled,
+    uniqueElement,
     needHeader,
-    uniqueKey,
     renderHeaderContent,
     onHeaderClick
   } = props
@@ -53,11 +51,10 @@ export function Select<V>(props: SelectI<V>): JSX.Element {
           </div>
           {isOpen && (
             <DropdownMenu<V>
-              itemToKey={itemToKey}
               defaultValue={defaultValue}
               list={list}
               value={value}
-              uniqueKey={uniqueKey}
+              uniqueElement={uniqueElement}
               render={render}
               toggleState={setClose}
               disabled={disabledItem}

@@ -1,32 +1,31 @@
 import * as React from 'react'
-import { FunctionComponent } from 'react'
-import { wrapEvt } from '../../functions/utils'
+import {ChangeEvent, FunctionComponent} from 'react'
 import { ReactComponent as ShowPasswordIcon } from '../../svg/disabledPass.svg'
 import { ReactComponent as HidePasswordIcon } from '../../svg/activePass.svg'
-import { Tooltip, Input } from 'antd'
+import { Tooltip } from 'antd'
 import './InputStyles.scss'
 
 export interface InputI extends Omit<Partial<HTMLInputElement>, 'onchange'> {
-  onChange: (value: string) => void
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
   name: string
   type: 'email' | 'text'
   value?: string
   placeholder?: string
   className?: string
-  errorStyles?: Record<string, string>
+  hasErrorStyles?: boolean
 }
 export const TextInput: FunctionComponent<InputI> = (props) => {
-  const { onChange, type, placeholder, name, errorStyles, className, value } = props
+  const { onChange, type, placeholder, name, hasErrorStyles, className, value } = props
 
   return (
-    <Input
-      className={`default_input ${className}`}
+    <input
+      className={`default_input ${className} form-element`}
       name={name}
       type={type}
       value={value}
-      style={errorStyles}
+      style={hasErrorStyles ? { border: '1px solid #DB2835' } : {}}
       placeholder={placeholder}
-      onChange={(event) => wrapEvt(event, onChange)}
+      onChange={(event) => onChange(event)}
     />
   )
 }
@@ -41,6 +40,7 @@ export interface InputPassI extends Omit<InputI, 'type'> {
   toggleType: (value: boolean) => void
 }
 
+
 export const InputPass: FunctionComponent<InputPassI> = (props) => {
   const {
     onChange,
@@ -50,18 +50,19 @@ export const InputPass: FunctionComponent<InputPassI> = (props) => {
     value,
     tooltip,
     toggleType,
-    errorStyles,
+    hasErrorStyles,
     className
   } = props
+
   return (
-    <div>
-      <Input
-        className={`default_input ${className}`}
-        style={errorStyles}
+    <div className={'input_pass_wrapper'}>
+      <input
+        className={`default_input ${className} form-element`}
+        style={hasErrorStyles ? { border: '1px solid #DB2835' } : {}}
         name={name}
         value={value}
         type={showPass ? 'text' : 'password'}
-        onChange={(event) => wrapEvt(event, onChange)}
+        onChange={(event) => onChange(event)}
         placeholder={placeholder}
       />
       {value.length > 0 && (

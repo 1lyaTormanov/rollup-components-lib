@@ -13,7 +13,7 @@ export const Avatar: FunctionComponent<AvatarI> = (props) => {
       {props.url ? (
         <img className='avatar' alt='user' src={props.url} />
       ) : (
-        <EmptyUser />
+        <EmptyUser className='empty' />
       )}
     </div>
   )

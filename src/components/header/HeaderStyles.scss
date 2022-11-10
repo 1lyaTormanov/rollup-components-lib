@@ -44,46 +44,9 @@
   width: 100%;
   background-color: $ui-neutral-white;
   box-shadow: 2px 4px 10px rgba(3, 25, 86, 0.08);
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  height: 72px;
-
-  .activeClass {
-    color: $mainColor;
-    border-bottom: 2px solid $mainColor;
-    font-weight: 600;
-    @media screen and (max-width: $breakpoint-lg) {
-      border: none;
-    }
-    .currentItemChevronIcon{
-      svg{
-        path{
-          stroke: $ui-neutral-90 !important;
-        }
-      }
-    }
-    svg {
-      width: 18px;
-      path{
-        stroke: $mainColor;
-      }
-    }
-    h3 {
-      color: $ui-neutral-90;
-      font-weight: 600;
-    }
-  }
-  .notificationsListAbsolute{
-    position: fixed;
-    z-index: 10000;
-    right: 3%;
-    top: 90px;
-  }
+  position: relative;
   .helpAbsolute{
-    position: fixed;
+    position: absolute;
     z-index: 10000;
     right: 3%;
     top: 90px;
@@ -116,17 +79,52 @@
       @include base-text;
     }
   }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  position: relative;
+  .activeClass {
+    color: $mainColor;
+    border-bottom: 2px solid $mainColor;
+    font-weight: 600;
+    @media screen and (max-width: $breakpoint-lg) {
+      border: none;
+    }
+    .currentItemChevronIcon{
+      svg{
+        path{
+          stroke: $ui-neutral-90 !important;
+        }
+      }
+    }
+    svg {
+      width: 18px;
+      path{
+        stroke: $mainColor;
+      }
+    }
+    h3 {
+      color: $ui-neutral-90;
+      font-weight: 600;
+    }
+  }
+  .notificationsListAbsolute{
+    position: fixed;
+    z-index: 10000;
+    right: 3%;
+    top: 90px;
+  }
   .rightBlock{
     display: flex;
     margin-left: auto;
     align-items: center;
-  }
-  .helpWrapper{
-    display: flex;
-    align-items: flex-end;
-    cursor: pointer;
-    position: relative;
-    margin-right: 10px;
+    svg{
+      cursor: pointer;
+      margin-right: 10px;
+    }
   }
   .notifWrapper{
     display: flex;
@@ -138,8 +136,8 @@
       height: 6px;
       border-radius: 50%;
       background: $ui-red-60;
-      right: 3px;
-      top: 3px
+      right: 10px;
+      top: 2px;
     }
   }
   &__nav {
@@ -239,10 +237,6 @@
     margin-right: 24px;
     align-items: center;
     justify-content: center;
-    svg {
-      width: 14px;
-      height: 7px;
-    }
   }
 
   .dropdown-name {
@@ -307,7 +301,13 @@
 
 .ant-dropdown-avatar{
   margin-left: 8px;
+  display: flex;
   margin-right: 12px;
+  svg{
+    height: 38px !important;
+    width: 38px !important;
+    overflow: initial;
+  }
 }
 
 @media (max-width: 1124px) {

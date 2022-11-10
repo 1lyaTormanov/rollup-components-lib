@@ -1,20 +1,17 @@
 import React, { FunctionComponent } from 'react'
-import { DatePicker } from 'antd'
-import moment from 'moment'
+import {DatePicker} from 'antd'
 import './PickerStyles.scss'
-import { RangeValue } from 'rc-picker/lib/interface'
 import { RangePickerProps } from 'formik-antd/src/date-picker'
-
-
-export interface OverloadPickerProps
-  extends Omit<Partial<RangePickerProps>, 'onchange'> {
-  onChange: (value: RangeValue<moment.Moment>) => void
-}
-
+import {ReactComponent as ClearIcon} from '../../svg/clear.svg'
 const { RangePicker } = DatePicker
 
-export const CustomRangePicker: FunctionComponent<OverloadPickerProps> = (
+import 'moment/locale/en-gb';
+import locale from 'antd/es/date-picker/locale/en_GB';
+
+export const CustomRangePicker: FunctionComponent<RangePickerProps> = (
   props
 ) => {
-  return <RangePicker {...props} />
+  return (
+        <RangePicker clearIcon={<ClearIcon/>} {...props} locale={locale}/>
+  )
 }

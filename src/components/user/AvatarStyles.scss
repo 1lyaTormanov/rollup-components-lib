@@ -6,7 +6,12 @@
     height: 40px;
     border-radius: 50%;
     width: 40px;
-    border: 1px solid $ui-neutral-30;
     object-fit: contain;
+    border: 1px solid $ui-neutral-30;
+  }
+  .empty{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
   }
 }

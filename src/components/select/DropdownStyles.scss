@@ -29,7 +29,7 @@
     color: $ui-neutral-90;
     padding: 4px 16px 4px 8px;
     &:hover{
-      background: $hoverColor;
+      background: $ui-neutral-20 !important;
     }
   }
 }

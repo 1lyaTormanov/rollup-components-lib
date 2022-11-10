@@ -1,6 +1,5 @@
-
+import { ReactNode } from 'react'
 import * as React from 'react'
-import {ReactNode} from "react";
 
 export interface DefaultSlide {
   src: string
@@ -54,12 +53,13 @@ export interface UserDataI {
 }
 
 export interface NavHeaderItem {
-  icon: React.ReactSVG | string | ReactNode
+  icon: ReactNode
   title: string
   link: string
   onClick?: () => void
   className?: string
-  id: number
+  id: number,
+  renderLink: (link: string) => ReactNode
 }
 
 export type SlideI<T> = DefaultSlide[] | T[]

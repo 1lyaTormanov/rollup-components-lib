@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { ReactNode } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import { ReactComponent as NotificationIcon } from '../../svg/notifications.svg'
 import { ReactComponent as ChevronTop } from '../../svg/chevron-top.svg'
 import { ReactComponent as ChevronBottom } from '../../svg/chevron-bottom.svg'
 import { ReactComponent as ActiveSupportIcon } from '../../svg/activeSupportIcon.svg'
 import { ReactComponent as SupportIcon } from '../../svg/supportIcon.svg'
 import { Menu, Dropdown } from 'antd'
-import { Avatar } from '../avatar/Avatar'
 import './HeaderStyles.scss'
-import { useWindowSize } from 'react-use'
+import { useClickAway, useWindowSize } from 'react-use'
 import { NavItem } from './NavItem'
 import { NavHeaderItem } from '../../types/types'
 import { FocusWrapper } from '../wrappers/FocusWrapper'
@@ -16,10 +15,11 @@ import { DropdownMenu } from '../select/DropdownMenu'
 import { Notifications } from './Notifications'
 import { useTranslation } from 'react-i18next'
 import { BREAKPOINT_LG } from '../consts'
+import { UserPreview } from '../user/UserPreview'
 
 export interface DropdownItemsI {
   title: string
-  icon: ReactNode
+  icon: any
   link: string
   disabled: boolean
   onClick?: () => void
@@ -35,11 +35,11 @@ export interface HeaderI<M> {
   logo: string
   dropdownItems: DropdownItemsI[]
   user: User
-  urls: NavHeaderItem[]
-  currentItem?: NavHeaderItem
-  setCurrentMenuItem?: (value: NavHeaderItem) => void
+  urls: Omit<NavHeaderItem, 'renderLink'>[]
+  currentItem?: Omit<NavHeaderItem, 'renderLink'>
+  setCurrentMenuItem?: (value: Omit<NavHeaderItem, 'renderLink'>) => void
   isHelpBlock?: true
-  onChangeRoute: (item: string) => void
+  renderLink: (route: string) => JSX.Element
   messages: M[]
   renderList: (item: M, closeCl: () => void) => ReactNode
   deleteNotifications: (ids: number[]) => void
@@ -58,7 +58,7 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
     currentItem,
     setCurrentMenuItem,
     isHelpBlock,
-    onChangeRoute,
+    renderLink,
     messages,
     renderList,
     deleteNotifications,
@@ -70,15 +70,44 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
   const { width } = useWindowSize()
   const { t } = useTranslation()
   const isTablet = width <= BREAKPOINT_LG
-  const getActiveClass = (elem: NavHeaderItem) =>
+  const getActiveClass = (elem: Omit<NavHeaderItem, 'renderLink'>) =>
     currentItem?.link === elem.link ? `activeClass ${elem.className}` : ''
 
-  const handler = (element: NavHeaderItem) => {
+  const [openHelp, setOpenHelp] = useState(false)
+
+  const handler = (element: Omit<NavHeaderItem, 'renderLink'>) => {
     setCurrentMenuItem?.(element)
-    onChangeRoute?.(element.link)
   }
+
+  const helpRef = useRef<HTMLDivElement | null>(null)
+
+  useClickAway(helpRef, () => {
+    setOpenHelp(false)
+  })
   return (
     <div className={`header-wrapper ${className}`}>
+      <React.Fragment>
+        {openHelp && (
+          <React.Fragment>
+            {!renderHelpPopUp ? (
+              <div className='helpAbsolute' ref={helpRef}>
+                <div className='help_title'>{t('help_title')}</div>
+                <div className='help_content'>{t('help_content')}</div>
+                <div className='help_footer'>
+                  {t('help_contacts')}
+                  <a href='mailto:y.ilkavets@ibagroup.eu'>
+                    y.ilkavets@ibagroup.eu
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className='helpAbsolute' ref={helpRef}>
+                {renderHelpPopUp?.(() => setOpenHelp(false))}
+              </div>
+            )}
+          </React.Fragment>
+        )}
+      </React.Fragment>
       <div className='header'>
         <img
           style={{ cursor: onLogoClick ? 'pointer' : 'default' }}
@@ -90,17 +119,20 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
         <div className='header__nav'>
           {!isTablet ? (
             <React.Fragment>
-              {urls.map((item) => (
-                <NavItem
-                  key={item.id}
-                  icon={item.icon}
-                  id={item.id}
-                  onClick={() => handler(item)}
-                  link={item.link}
-                  title={item.title}
-                  className={getActiveClass(item)}
-                />
-              ))}
+              {urls.map((item) => {
+                return (
+                  <NavItem
+                    key={item.id}
+                    icon={item.icon}
+                    id={item.id}
+                    onClick={() => handler(item)}
+                    link={item.link}
+                    renderLink={renderLink}
+                    title={item.title}
+                    className={getActiveClass(item)}
+                  />
+                )
+              })}
             </React.Fragment>
           ) : (
             <FocusWrapper>
@@ -109,6 +141,7 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
                   <div className='mobileItem'>
                     {currentItem && (
                       <NavItem
+                        renderLink={renderLink}
                         key={currentItem.id}
                         icon={currentItem.icon}
                         id={currentItem.id}
@@ -143,8 +176,7 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
                           </div>
                         )}
                         toggleState={closeMenu}
-                        itemToKey={(item) => item.id.toString()}
-                        uniqueKey={{ key: 'id', value: currentItem.id }}
+                        uniqueElement={(el) => el.id === currentItem?.id}
                       />
                     </div>
                   )}
@@ -155,41 +187,17 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
         </div>
         <div className='rightBlock'>
           {isHelpBlock && (
-            <FocusWrapper className='helpWrapper'>
-              {(isHelp, closeCallback, openCallback) => (
-                <React.Fragment>
-                  {isHelp ? (
-                    <ActiveSupportIcon onClick={closeCallback} />
-                  ) : (
-                    <SupportIcon onClick={openCallback} />
-                  )}
-                  <React.Fragment>
-                    {isHelp && (
-                      <React.Fragment>
-                        {!renderHelpPopUp ? (
-                          <div className='helpAbsolute'>
-                            <div className='help_title'>{t('help_title')}</div>
-                            <div className='help_content'>
-                              {t('help_content')}
-                            </div>
-                            <div className='help_footer'>
-                              {t('help_contacts')} :{' '}
-                              <a href='mailto:y.ilkavets@ibagroup.eu'>
-                                y.ilkavets@ibagroup.eu
-                              </a>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className='helpAbsolute'>
-                            {renderHelpPopUp?.(closeCallback)}
-                          </div>
-                        )}
-                      </React.Fragment>
-                    )}
-                  </React.Fragment>
-                </React.Fragment>
+            <React.Fragment>
+              {openHelp ? (
+                <ActiveSupportIcon />
+              ) : (
+                <SupportIcon
+                  onClick={() => {
+                    setOpenHelp(!openHelp)
+                  }}
+                />
               )}
-            </FocusWrapper>
+            </React.Fragment>
           )}
           <FocusWrapper className='notifWrapper'>
             {(isNotif, closeCallback, openNotif) => (
@@ -237,18 +245,12 @@ export function HeaderLayout<T>(props: HeaderI<T>) {
               className='ant-dropdown-link'
               onClick={(e) => e.preventDefault()}
             >
-              <Avatar url={user.avatar} className='ant-dropdown-avatar' />
-              <div className='dropdown-info'>
-                <div className='dropdown-name'>{user.name}</div>
-                <div
-                  className={`dropdown-job ${
-                    user.positionName.length > 25 && 'dropdown-job-ellipsis'
-                  }`}
-                >
-                  {user.positionName}
-                </div>
-              </div>
-              <ChevronBottom />
+              <UserPreview
+                url={user.avatar}
+                username={user.name}
+                description={user.positionName}
+              />
+              <ChevronBottom className='nav_panel' />
             </nav>
           </Dropdown>
         </div>

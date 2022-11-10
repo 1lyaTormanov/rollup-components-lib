@@ -6,7 +6,7 @@ import { Col } from 'antd'
 import { Formik, FormikErrors, FormikTouched } from 'formik'
 import { Form } from 'formik-antd'
 
-export type SliderChildren<T> = {
+type Children<T> = {
   values: T
   errors: FormikErrors<T>
   handleChange: (e: ChangeEvent<any>) => void
@@ -23,7 +23,7 @@ export interface LoginFormI<T> {
   errorStyle?: React.CSSProperties
   initialValues: T
   onSubmit: () => void
-  children: (children: SliderChildren<T>) => React.ReactNode
+  children: (children: Children<T>) => React.ReactNode
   validationSchema: any
 }
 

@@ -21,6 +21,7 @@ interface FocusWrapperI {
 export const FocusWrapper: FunctionComponent<FocusWrapperI> = (props) => {
   const [state, setState] = useState(false)
   const ref = useRef(null)
+
   useClickAway(ref, () => {
     setState(false)
   })

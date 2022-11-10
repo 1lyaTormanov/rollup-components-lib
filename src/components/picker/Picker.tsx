@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react'
 import moment from 'moment'
 import { DatePicker } from 'antd'
 import './PickerStyles.scss'
+import {ReactComponent as ClearIcon} from '../../svg/clear.svg'
 
 interface PickerI {
   picker: 'week' | 'month' | 'quarter' | 'year'
@@ -18,6 +19,7 @@ export const Picker: FunctionComponent<PickerI> = (props) => {
     <DatePicker
       disabledDate={props.disabledDate}
       picker={props.picker}
+      clearIcon={<ClearIcon/>}
       className={props.styleClass || 'customPicker'}
       onChange={(date) => props.onChange(date)}
       format={props.format}
